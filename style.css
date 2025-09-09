@@ -1,0 +1,31 @@
+.search {
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items {
+  /* border: 2px solid black; */
+  border-radius: 5px;
+  padding: 10px;
+  width: 25%;
+  margin: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .6);
+}
+
+a {
+  text-decoration: none;
+}
+
+.items img {
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
