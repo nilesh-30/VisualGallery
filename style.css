@@ -1,19 +1,31 @@
+body {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .search {
   border-radius: 10px;
-  padding-left: 10px;
+  margin: 10px;
+  padding: 3px 0;
+  text-align: center;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .items {
-  /* border: 2px solid black; */
   border-radius: 5px;
   padding: 10px;
-  width: 25%;
+  width: 15%;
   margin: 10px;
+  min-width: 230px;
   box-shadow: 0 0 5px rgba(0, 0, 0, .6);
 }
 
@@ -23,9 +35,14 @@ a {
 
 .items img {
   width: 100%;
+  min-height: 70%;
 }
 
-.title {
+.chartName {
   text-align: center;
+}
+
+.chartName:hover {
+  color: blue;
 }
 
