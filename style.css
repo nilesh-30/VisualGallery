@@ -12,6 +12,7 @@ body {
   margin: 10px;
   padding: 3px 0;
   text-align: center;
+  width: 60%;
 }
 
 .container {
@@ -36,7 +37,8 @@ a {
 
 .items img {
   width: 100%;
-  min-height: 70%;
+  height: 2.5%;
+  min-height: 180px;
 }
 
 .chartName {

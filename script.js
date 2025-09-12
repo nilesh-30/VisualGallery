@@ -14,12 +14,14 @@ function renderComponent(item) {
   container.append(galleryItem);
 }
 
+let fetchedData = null;
+
 function fetchDataAndRender() {
   fetch("https://pbivizedit.com/api/visuals")
     .then((res) => res.json())
     .then((data) => {
-      // console.log("starting", data)
-      data.items.forEach((item) => {
+      fetchedData = data;
+      fetchedData.items.forEach((item) => {
         renderComponent(item);
       })
     })
@@ -35,19 +37,16 @@ input.addEventListener('input', (e) => {
 
 function search(value) {
   if (value === "") {
-    fetchDataAndRender();
+    fetchedData.items.forEach((item) => {
+      renderComponent(item);
+    })
   }
   else {
-    fetch("https://pbivizedit.com/api/visuals")
-      .then(res => res.json())
-      .then((data) => {
-        const charts = data.items.filter(item => item.id.includes(value));
-        // console.log(charts)
-        container.innerHTML = "";
-        charts.forEach((item) => {
-          renderComponent(item)
-        })
-      })
+    const charts = fetchedData.items.filter(item => item.id.includes(value));
+    container.innerHTML = "";
+    charts.forEach((item) => {
+      renderComponent(item)
+    })
   }
 }
 
