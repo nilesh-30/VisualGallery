@@ -1,70 +1,72 @@
-const container = document.querySelector('.container');
-const input = document.querySelector('input');
-
 // Types
-interface fetched {
-  name: string,
-  id: string,
-  imagePath: string,
-  workspacePath: string,
-  description: string
+interface VisualItem {
+	name: string;
+	id: string;
+	imagePath: string;
+	workspacePath: string;
+	description: string;
 }
 
-interface itemType {
-  items: fetched[]
+interface VisualItemList {
+	items: VisualItem[];
 }
 
 // Variables
-let fetchedData: itemType | null = null;
+const container = document.querySelector(".container") as HTMLElement;
+const input = document.querySelector("input") as HTMLInputElement;
 
+let fetchedData: VisualItemList | null = null;
+
+// Functions
 function fetchDataAndRender(): void {
-  fetch("https://pbivizedit.com/api/visuals")
-    .then((res) => res.json())
-    .then((data) => {
-      fetchedData = data;
-      if (fetchedData) {
-        fetchedData.items.forEach((item: fetched) => {
-          renderComponent(item);
-        })
-      }
-    })
+	fetch("https://pbivizedit.com/api/visuals")
+		.then((res) => res.json())
+		.then((data) => {
+			fetchedData = data;
+			if (fetchedData) {
+				fetchedData.items.forEach((item: VisualItem) => {
+					renderComponent(item);
+				})
+			}
+		})
 }
 
-fetchDataAndRender()
-
-function renderComponent(item: fetched): void {
-  const galleryItem: HTMLDivElement = document.createElement('div');
-  galleryItem.classList.add('items');
-  galleryItem.innerHTML = `
+function renderComponent(item: VisualItem): void {
+	const galleryItem: HTMLDivElement = document.createElement("div");
+	galleryItem.classList.add("items");
+	galleryItem.innerHTML = `
     <a title=${item.description} href="#">
       <img src=${item.imagePath} alt=${item.name}>
       <hr>
       <div class="chartName">${item.name}</div>
     </a>
   `;
-  container.append(galleryItem);
+	container.append(galleryItem);
 }
-
-input.addEventListener('input', (e: Event) => {
-  const target = e.target as HTMLInputElement
-  const value: string = (target.value).toLowerCase();
-  search(value);
-})
 
 function search(value: string): void {
-  if (!fetchedData) return;
+	if (!fetchedData) return;
 
-  if (value === "") {
-    fetchedData.items.forEach((item: fetched) => {
-      renderComponent(item);
-    })
-  }
-  else {
-    const charts: fetched[] = fetchedData.items.filter((item: fetched) => item.id.indexOf(value) !== -1);
-    container.innerHTML = "";
-    charts.forEach((item: fetched) => {
-      renderComponent(item)
-    })
-  }
+	if (value === "") {
+		fetchedData.items.forEach((item: VisualItem) => {
+			renderComponent(item);
+		})
+	}
+	else {
+		const charts: VisualItem[] = fetchedData.items.filter((item: VisualItem) => item.id.includes(value));
+		container.innerHTML = "";
+		charts.forEach((item: VisualItem) => {
+			renderComponent(item);
+		})
+	}
 }
 
+// Event Listeners
+input.addEventListener("input", (e: Event) => {
+	const target = e.target as HTMLInputElement;
+	const value: string = (target.value).toLowerCase();
+	search(value);
+})
+
+// Function Calls
+fetchDataAndRender();
