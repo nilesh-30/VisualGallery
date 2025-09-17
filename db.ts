@@ -1,19 +1,15 @@
 // Imports
-import { Db, MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-// Variables
-const client: MongoClient = new MongoClient("mongodb://127.0.0.1:27017/");
-
-// Functions
-async function connectDb(): Promise<Db | undefined> {
-	try {
-		await client.connect();
-		const db: Db = client.db("VisualCharts");
-		return db;
-	} catch (error) {
-		console.error("Something went wrong:", error);
-	}
+// Connecting to MongoDB using Mongoose.
+async function connectDb(): Promise<void> {
+    try {
+        await mongoose.connect("mongodb://127.0.0.1:27017/VisualCharts");
+        console.log("Database connected successfully.");
+    } catch (error) {
+        console.log("Something went wrong", error);
+    }
 }
 
 // Exports
-export default connectDb;
+export { connectDb };
