@@ -1,0 +1,79 @@
+html, body {
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.search-container {
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+}
+
+.search-container > div {
+  gap: 10px;
+  display: flex;
+}
+
+.container {
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+}
+
+.visualItem {
+  border-radius: 5px;
+  width: 15%;
+  min-width: 230px;
+  min-height: 213px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px #0009;
+}
+
+a {
+  text-decoration: none;
+}
+
+.visualItem img {
+  width: 100%;
+  min-height: 180px;
+}
+
+.visualItemName {
+  text-align: center;
+  min-height: 8%;
+}
+
+.visualItemName:hover {
+  color: #00f;
+}
+
+.btn {
+  justify-content: space-between;
+  padding-top: 6px;
+  display: flex;
+}
+
+.visual-form {
+  background: #e4dfdf;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 10px;
+  width: 30%;
+  padding: 15px;
+  display: flex;
+  position: fixed;
+  top: 35%;
+  left: 35%;
+}
+/*# sourceMappingURL=client.9f367d21.css.map */
